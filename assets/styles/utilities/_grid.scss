@@ -1,0 +1,164 @@
+@use "sass:math";
+@use 'utilities/mq';
+
+// all the default settings for your container and grid
+// You can modify them according to the design of your project
+$global-width: mq.$layout-width !default;
+$grid-columns: 12 !default;
+$grid-gutters: 30px !default;
+
+
+$available-gutter-type: 'margin', 'padding';
+$available-cell-keywords: 'auto', 'full', 'fit';
+
+
+/// Create grid container.
+///
+/// @param {integer (with unit)} $width
+///   Maximum width of the wrapper.
+///   (global width defined in project settings by default).
+/// @param {integer (with unit) or 'none'} $padding
+///   Wrapper outer padding.
+///   (half of grid gutters size defined by default in the global parameters of the grid).
+/// @param {string ('full' or null)} $type
+///   Set to 'full' if full-width wrapper is necessary.
+///   (null by default).
+@mixin wrapper(
+  $width: $global-width,
+  $padding: math.div($grid-gutters, 2),
+  $type: null) {
+  margin-left: auto;
+  margin-right: auto;
+
+  @if $type == null {
+    @if $padding != 'none' {
+      max-width: #{$width + $padding * 2};
+    } @else {
+      max-width: $width;
+    }
+  }
+
+  @if $type != 'full' {
+    @if $padding != 'none' {
+      padding-left: $padding;
+      padding-right: $padding;
+    }
+  }
+}
+
+/// Create grid.
+///
+/// @param {boolean} $wrap
+///   Allow grid items to wrap (true by default).
+/// @param {integer (with unit)} $gutters
+///   Size of the gutters of your grid
+///   (size of the gutters defined by default in the global parameters of the grid).
+/// @param {boolean} $margin-negative
+///   Remove the outer margins of the grid (true by default).
+@mixin grid(
+  $wrap: true,
+  $gutters: $grid-gutters,
+  $margin-negative: true) {
+  display: flex;
+
+  @if $wrap {
+    flex-wrap: wrap;
+  }
+
+  @if $margin-negative != true {
+    margin-left: 0;
+    margin-right: 0;
+  } @else {
+    margin-left: math.div($gutters, -2);
+    margin-right: math.div($gutters, -2);
+  }
+}
+
+
+/// Create grid cell.
+///
+/// @param {number (unitless) or string} $size
+///   Defines the size of the cell.
+///   (basically a number of columns).
+///   Use the "full" keyword so that the cell size takes up the entire width of the grid.
+///   Use the "auto" keyword so that the cell size takes the remaining available size in the grid.
+///   Use the "fit" keyword to limit the cell size to the size of its own content.
+/// @param {integer (with unit)} $gutters
+///   Size of the gutters between cells.
+///   (size of the gutters defined by default in the global parameters of the grid).
+/// @param {string} $gutter-type
+///   You can decide if the gutters are "margin" or "padding" using these keywords.
+///   You can use the "none" keyword to remove the margins from your cell.
+///   ("margin" by default).
+@mixin cell(
+  $size: 'full',
+  $gutters: $grid-gutters,
+  $gutter-type: 'margin') {
+  // error messages
+  @if type-of($size) == 'string' {
+    @if not index($available-cell-keywords, $size) {
+      @error '"#{$size}" is not a possible value for the size of a cell, you must use an integer or one of the following keywords: "auto", "full" or "fit".';
+    }
+  }
+  @if not index($available-gutter-type, $gutter-type) {
+    @error '"#{$gutter-type}" is not a possible type of gutter, you can use the "margin", "padding" or "none" keywords.';
+  }
+
+
+  @if $size != 'auto' {
+    flex: 0 0 auto;
+  } @else {
+    flex: 1 1 0px;
+  }
+
+  @if $size == 'full' {
+    @if $gutter-type == 'margin' {
+      width: calc(100% - #{$gutters});
+    } @else {
+      width: 100%;
+    }
+  } @else if $size == 'fit' or $size == 'auto' {
+    width: auto;
+  } @else {
+    @if $gutter-type == 'margin' {
+      width: calc(#{math.div(100%, $grid-columns) * $size} - #{$gutters});
+    } @else {
+      width: calc(#{math.div(100%, $grid-columns) * $size});
+    }
+  }
+
+  @if $gutter-type != 'none' {
+    #{$gutter-type}-left: math.div($gutters, 2);
+    #{$gutter-type}-right: math.div($gutters, 2);
+  }
+}
+
+
+/// Add grid cell offset.
+///
+/// @param {number (unitless)} $size
+///   Defines the size of the cell offset.
+///   (basically a number of columns).
+/// @param {integer (with unit)} $gutters
+///   Must be the same as the gutter size that is set in the mixin "cell".
+///   (size of the gutters defined by default in the global parameters of the grid).
+/// @param {string} $gutter-type
+///   Must be the same type which is defined in the mixin "cell".
+///   ("margin" by default).
+@mixin cell-offset(
+  $size: 1,
+  $gutters: $grid-gutters,
+  $gutter-type: 'margin'
+) {
+  // error messages
+  @if not index($available-gutter-type, $gutter-type) {
+    @error '"#{$gutter-type}" is not a possible type of gutter, you can use the "margin" or "padding" keywords.';
+  }
+
+
+  @if $gutter-type == 'margin' {
+    margin-left: calc(#{math.div(100%, $grid-columns) * $size} + #{math.div($gutters, 2)});
+  } @else {
+    margin-left: calc(#{math.div(100%, $grid-columns) * $size});
+  }
+}

@@ -1,0 +1,40 @@
+/*! layout */
+
+@use 'utilities/mq';
+
+$layout-width: 90vw;
+$layout-padding-desktop: 40px;
+$layout-padding-mobile: 20px;
+
+.container {
+  display: grid;
+  grid-template-columns:
+    1fr min(calc(100% - #{$layout-padding-mobile} * 2), $layout-width)
+    1fr;
+
+  & > * {
+    grid-column: 2 / -2;
+  }
+
+  @include mq.media('>=tablet') {
+    grid-template-columns:
+      1fr min(calc(100% - #{$layout-padding-desktop} * 2), $layout-width)
+      1fr;
+  }
+}
+
+.container-full {
+  padding-inline: $layout-padding-mobile;
+
+  @include mq.media('>=tablet') {
+    padding-inline: $layout-padding-desktop;
+  }
+}
+
+.wrapped-content {
+  grid-column: 2 / -2;
+}
+
+.fullwidth-content {
+  grid-column: 1 / -1;
+}

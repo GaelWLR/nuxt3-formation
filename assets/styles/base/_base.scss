@@ -1,0 +1,131 @@
+@use 'utilities/colors';
+@use 'utilities/fonts';
+
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+
+/**
+ * Set up a decent box model on the root element
+ */
+html {
+  box-sizing: border-box;
+}
+
+/**
+ * Make all elements from the DOM inherit from the parent box-sizing
+ * Since `*` has a specificity of 0, it does not override the `html` value
+ * making all elements inheriting from the root box-sizing value
+ * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+// Additionnal reset styles for very common stuff
+// Normalize tries to only remove differences between browsers.
+// If we want an actual reset, we need to reset the styles of
+// just a handful of elements.
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: inherit;
+}
+
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding-left: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+b {
+  font-weight: 700;
+}
+
+// Reset button styles.
+// It takes a bit of work to achieve a neutral look.
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  // show a hand cursor on hover
+  cursor: pointer;
+}
+
+details > summary {
+  cursor: pointer;
+  user-select: none;
+}
+
+// Here we contradict Normalize
+fieldset {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+// Force images and frames to fit their container at most
+img,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+// Other small fixes
+::-ms-clear {
+  display: none;
+}
+
+// Document
+
+html {
+  // Map root font-size to 10px, so that 1rem = 10px
+  font-size: 0.625em; /* fallback IE8+ */
+  font-size: calc(
+          1em * 0.625
+  ); /* IE9-IE11 math fixing. See http://bit.ly/1g4X0bX */
+}
+
+body {
+  margin: 0;
+  font-family: fonts.$base;
+  // That would be a 16px font size in most cases
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: colors.$dark;
+}
+
+.heading-1 {
+  margin-top: 30px;
+  margin-bottom: 45px;
+  font-size: clamp(4rem, 4vw, 7rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.heading-2 {
+  font-size: 3rem;
+  font-weight: 700;
+}

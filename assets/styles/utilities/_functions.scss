@@ -1,0 +1,76 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass functions.
+// -----------------------------------------------------------------------------
+
+$base-url: '../';
+
+// Native `url(..)` function wrapper
+// @param {String} $base - base URL for the asset
+// @param {String} $type - asset type folder (e.g. `fonts/`)
+// @param {String} $path - asset path
+// @return {Url}
+@function asset($base, $type, $path) {
+  @return url($base + $type + $path);
+}
+
+// Returns URL to an image based on its path
+// @param {String} $path - image path
+// @param {String} $base [$base-url] - base URL
+// @return {Url}
+// @require $base-url
+@function image($path, $base: $base-url) {
+  @return asset($base, 'images/', $path);
+}
+
+// Returns URL to a font based on its path
+// @param {String} $path - font path
+// @param {String} $base [$base-url] - base URL
+// @return {Url}
+// @require $base-url
+@function font($path, $base: $base-url) {
+  @return asset($base, 'fonts/', $path);
+}
+
+// ----------------------------------------
+// Transitions easings ordered by intensity
+// ----------------------------------------
+
+// Easing Map Get Function
+// @link https://easings.net/fr
+// @link https://css-tricks.com/snippets/sass/easing-map-get-function/
+// @usage `animation: name 2.5s ease(in-quad) infinite alternate;`
+$ease: (
+        in-quad: cubic-bezier(0.11, 0.00, 0.50, 0.00),
+        in-cubic: cubic-bezier(0.32, 0.00, 0.67, 0.00),
+        in-quart: cubic-bezier(0.50, 0.00, 0.75, 0.00),
+        in-quint: cubic-bezier(0.64, 0.00, 0.78, 0.00),
+        in-sine: cubic-bezier(0.12, 0.00, 0.39, 0.00),
+        in-expo: cubic-bezier(0.70, 0.00, 0.84, 0.00),
+        in-circ: cubic-bezier(0.55, 0.00, 1.00, 0.45),
+        in-back: cubic-bezier(0.36, 0.00, 0.66, -0.56),
+        out-quad: cubic-bezier(0.50, 1.00, 0.89, 1.00),
+        out-cubic: cubic-bezier(0.33, 1.00, 0.68, 1.00),
+        out-quart: cubic-bezier(0.25, 1.00, 0.50, 1.00),
+        out-quint: cubic-bezier(0.22, 1.00, 0.36, 1.00),
+        out-sine: cubic-bezier(0.61, 1.00, 0.88, 1.00),
+        out-expo: cubic-bezier(0.16, 1.00, 0.30, 1.00),
+        out-circ: cubic-bezier(0.00, 0.55, 0.45, 1.00),
+        out-back: cubic-bezier(0.34, 1.56, 0.64, 1.00),
+        in-out-quad: cubic-bezier(0.45, 0.00, 0.55, 1.00),
+        in-out-cubic: cubic-bezier(0.65, 0.00, 0.35, 1.00),
+        in-out-quart: cubic-bezier(0.76, 0.00, 0.24, 1.00),
+        in-out-quint: cubic-bezier(0.83, 0.00, 0.17, 1.00),
+        in-out-sine: cubic-bezier(0.37, 0.00, 0.63, 1.00),
+        in-out-expo: cubic-bezier(0.87, 0.00, 0.13, 1.00),
+        in-out-circ: cubic-bezier(0.85, 0.00, 0.15, 1.00),
+        in-out-back: cubic-bezier(0.68, -0.60, 0.32, 1.60)
+);
+
+@function ease($key) {
+  @if map-has-key($ease, $key) {
+    @return map-get($ease, $key);
+  }
+
+  @warn "Unkown '#{$key}' in $ease.";
+  @return null;
+}

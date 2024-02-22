@@ -1,0 +1,29 @@
+$layout-width: 1200px;
+
+$breakpoints-list: (
+        'tablet': 700px,
+        'desktop': 1100px
+) !default;
+
+// Default media expressions list (you can override it if you want)
+// $media-expressions-list: (
+//   'screen': 'screen',
+//   'print': 'print',
+//   'handheld': 'handheld',
+//   'landscape': '(orientation: landscape)',
+//   'portrait': '(orientation: portrait)',
+//   'retina2x': '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)',
+//   'retina3x': '(-webkit-min-device-pixel-ratio: 3), (min-resolution: 350dpi)'
+// ) !default;
+
+// Include-media library documentation here : https://eduardoboucas.github.io/include-media/documentation/
+@forward "node_modules/include-media/dist/include-media" with (
+  $breakpoints: $breakpoints-list,
+  // $media-expressions: $media-expressions-list
+);
+
+// How to use include-media system :
+// 1. Import mq file in your scss stylesheet : "@use 'utilities/mq';". After that, you can use the "media" mixin as shown below
+// 2. Usage example 1 : @include mq.media(">=tablet") { ... } (for each breakpoints, you can use ">", "<", ">=", "<=" symbols)
+// 3. Usage example 2 : @include mq.media(">=tablet", "<desktop") { ... } (you can combine breakpoints)
+// 4. Usage example 3 : @include mq.media(">=tablet", "print") { ... } (you can mix sizes and expressions)

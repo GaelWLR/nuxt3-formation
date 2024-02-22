@@ -1,0 +1,38 @@
+# Course structure
+
+- Creation of a project (step 0)
+  - Create project and install dependencies
+  - Describe files and folders created
+- [Introduction](1-introduction.md) (step 1)
+  - Checkout from design system
+  - Explain starter kit
+  - Create your first page (hello world)
+- [Manage layouts](2-layouts.md) (step 2)
+  - create layouts
+  - create the real homepage
+- [Pages creation](3-pages_creation.md) (step 3)
+  - characters page (list)
+  - character page (full)
+  - episodes page (list)
+  - episode page (full)
+- [Data fetching](4-data_fetching.md) (step 4)
+  - Data fetching with REST
+  - Data fetching with GraphQL
+- [Error handling](5-error_handling.md) (step 5)
+  - Global error handling (error page)
+  - Specific error handling (dynamic fetch client side)
+  - handle asyncData error
+  - improve logs
+- [i18n](6-i18n.md) (step 6)
+  - installation
+  - simple translation usage
+  - translatable routing
+  - switch language (EN/FR header)
+- [SEO & meta](7-seo_and_meta.md) (step 7)
+  - Add meta tags
+  - Add translated meta tags (useLocaleHead)
+- [Rendering mode](8-rendering_mode.md) (step 8)
+  - SSR + Hydration
+  - CSR
+  - SSR without hydration
+  - Hybrid
