@@ -30,6 +30,10 @@ defineI18nRoute({
 //   en: { slug: data.slugs.en },
 //   nl: { slug: data.slugs.nl }
 // })
+
+useHead({
+  title: character.value?.name,
+});
 </script>
 
 <template>

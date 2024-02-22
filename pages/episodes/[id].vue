@@ -50,6 +50,10 @@ const fetchCharacters = async () => {
     openToast("An error occurred while fetching characters.");
   }
 };
+
+useHead({
+  title: episode.value?.name,
+});
 </script>
 
 <template>
