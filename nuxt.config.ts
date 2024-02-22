@@ -5,6 +5,13 @@ import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["normalize.css/normalize.css", "@/assets/styles/index.scss"],
+  modules: ["nuxt-graphql-client"],
+  runtimeConfig: {
+    public: {
+      GQL_HOST: "https://rickandmortyapi.com/graphql",
+      httpHost: "https://rickandmortyapi.com/api",
+    },
+  },
   vite: {
     css: {
       preprocessorOptions: {

@@ -1,0 +1,5 @@
+query characterStatus($id: ID!) {
+  character(id: $id) {
+    status
+  }
+}
