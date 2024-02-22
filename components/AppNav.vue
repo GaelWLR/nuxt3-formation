@@ -1,14 +1,24 @@
+<script setup lang="ts">
+const { locales } = useI18n();
+const switchLocalePath = useSwitchLocalePath();
+</script>
+
 <template>
   <nav class="Nav">
     <ul class="Nav__links">
       <li>
-        <NuxtLink to="/episodes" class="Nav__link">
+        <NuxtLinkLocale to="/episodes" class="Nav__link">
           <span class="Nav__link__text">Episodes</span>
-        </NuxtLink>
+        </NuxtLinkLocale>
       </li>
       <li>
-        <NuxtLink to="/characters" class="Nav__link">
+        <NuxtLinkLocale to="/characters" class="Nav__link">
           <span class="Nav__link__text">Characters</span>
+        </NuxtLinkLocale>
+      </li>
+      <li v-for="locale in locales" :key="locale.code">
+        <NuxtLink class="Nav__link" :to="switchLocalePath(locale.code)">
+          <span class="Nav__link__text">{{ locale.name }}</span>
         </NuxtLink>
       </li>
     </ul>

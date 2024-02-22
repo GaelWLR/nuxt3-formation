@@ -41,9 +41,9 @@ withDefaults(defineProps<Props>(), {
       </div>
       <div class="Card__bottom">
         <h3 class="Card__title">
-          <nuxt-link :to="to" class="Card__link">
+          <NuxtLinkLocale :to="to" class="Card__link">
             {{ title }}
-          </nuxt-link>
+          </NuxtLinkLocale>
         </h3>
       </div>
     </div>

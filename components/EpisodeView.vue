@@ -30,10 +30,12 @@ const formattedId = computed(() =>
     </h1>
 
     <div class="Episode__characters">
-      <h2 class="Episode__characters__title heading-2">Episode's characters</h2>
+      <h2 class="Episode__characters__title heading-2">
+        {{ $t("episodes.characters") }}
+      </h2>
       <div v-if="!characters.length" class="Episode__characters__load">
         <app-button
-          label="Load characters"
+          :label="$t('episodes.loadCharacters')"
           @click="$emit('fetch-characters')"
         />
       </div>

@@ -1,0 +1,21 @@
+{
+  "characters": {
+    "title": "Personnages",
+    "description": "Liste des personnages de Rick & Morty"
+  },
+  "episodes": {
+    "title": "Épisodes",
+    "description": "Liste des épisodes de Rick & Morty",
+    "characters": "Personnages de l'épisode",
+    "loadCharacters": "Charger les personnages"
+  },
+  "homepage": {
+    "title": "Rick & Morty - FR",
+    "description": "Rick est un vieil homme mentalement déséquilibré mais scientifiquement doué qui a récemment renoué avec sa famille. Il passe la plupart de son temps à entraîner son jeune petit-fils Morty dans des aventures dangereuses et extravagantes à travers l'espace et les univers parallèles. Combinées à la vie familiale déjà instable de Morty, ces événements causent beaucoup de détresse à Morty à la maison et à l'école.",
+    "button": "Explorer l'émission"
+  },
+  "nav": {
+    "characters": "Personnages",
+    "episodes": "Épisodes"
+  }
+}

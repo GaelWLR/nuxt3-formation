@@ -9,7 +9,7 @@ defineProps<Props>();
 
 <template>
   <section class="Characters container">
-    <h1 class="Characters__title heading-1">Characters</h1>
+    <h1 class="Characters__title heading-1">{{ $t("characters.title") }}</h1>
     <ul class="Characters__list">
       <li v-for="character in characters" :key="character?.id ?? ''">
         <app-card

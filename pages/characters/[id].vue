@@ -18,6 +18,18 @@ const fetchStatus = async () => {
 
   status.value = statusData.character?.status ?? "Unknown";
 };
+
+defineI18nRoute({
+  paths: {
+    en: "/characters/[id]",
+    fr: "/personnages/[id]",
+  },
+});
+
+// setI18nParams({
+//   en: { slug: data.slugs.en },
+//   nl: { slug: data.slugs.nl }
+// })
 </script>
 
 <template>

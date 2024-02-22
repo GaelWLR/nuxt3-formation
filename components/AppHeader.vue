@@ -1,8 +1,8 @@
 <template>
   <header class="Header">
-    <NuxtLink to="/" class="Header__logo">
+    <NuxtLinkLocale to="/" class="Header__logo">
       <svg-icon name="logo" />
-    </NuxtLink>
+    </NuxtLinkLocale>
   </header>
 </template>
 

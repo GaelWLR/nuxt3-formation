@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const localePath = useLocalePath();
+
 definePageMeta({
   layout: "landing",
 });
@@ -13,14 +15,12 @@ definePageMeta({
     <div class="Homepage__content">
       <svg-icon class="Homepage__channel" name="adult-swim-logo" />
       <p class="Homepage__description">
-        Rick is a mentally-unbalanced but scientifically gifted old man who has
-        recently reconnected with his family. He spends most of his time
-        involving his young grandson Morty in dangerous, outlandish adventures
-        throughout space and alternate universes. Compounded with Morty's
-        already unstable family life, these events cause Morty much distress at
-        home and school.
+        {{ $t("homepage.description") }}
       </p>
-      <app-button label="Explore the show" to="/episodes" />
+      <app-button
+        :label="$t('homepage.button')"
+        :to="localePath('/episodes')"
+      />
     </div>
   </section>
 </template>
